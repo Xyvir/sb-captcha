@@ -235,7 +235,7 @@
         .jPopup .content span {
             font-size: 13px;
         }
-    }</style><body><main><form class="form" action=""><input class="jCaptcha" type="text" placeholder="Type in result please"> <button class="button" type="submit">Submit</button></form><a class="codeBtn" role="button">View demo source code</a></main><footer class="btnWrap"><a class="github-button" href="https://github.com/robiveli/js-captcha" data-size="large" aria-label="View on GitHub">View on GitHub</a> <a class="github-button" href="https://github.com/robiveli/js-captcha/archive/master.zip" data-icon="octicon-cloud-download" data-size="large" egaaria-label="Download robiveli/jCaptcha on GitHub">Download</a></footer><script src="js/index.min.js"></script><script src="https://www.rvdizajn.com/jpopup/js/jPopup.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script><script>// optionally, set maximum number of captcha validation on event:
+    }</style><body><main><form class="form" action=""><input class="jCaptcha" type="text" placeholder="Type in result please"> <button class="button" type="submit">Submit</button></form></main><script src="js/index.min.js"></script><script src="https://www.rvdizajn.com/jpopup/js/jPopup.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script><script>// optionally, set maximum number of captcha validation on event:
         const maxNumberOfTries = 5;
 
         // captcha initial setup
@@ -304,114 +304,7 @@
         // validate captcha on form submit event
         document.querySelector('form').addEventListener('submit', formSubmit);
 
-        // popup setup
-        document.querySelector('.codeBtn').addEventListener('click', function () {
-
-            var jPopupDemo = new jPopup({
-
-                content: '<strong>HTML</strong>\
-                    <p>\
-                        &lt;form class="form" action=""&gt;\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;input class="jCaptcha" type="text" placeholder="Type in result please"&gt;\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;button type="submit">Submit&lt;/button&gt;\
-                        <br>\
-                        &lt;/form&gt;\
-                    </p>\
-                    <strong>JavaScript</strong>\
-                    <p>\
-                    <span>// optionally, set maximum number of captcha validation on event:</span>\
-                    const maxNumberOfTries = 5;\
-                    <br>\ <br>\
-                    <span>// captcha initial setup</span>\
-                    var myCaptcha = new jCaptcha({\
-                    <br><br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;el: ".jCaptcha",\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;canvas: {\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;class: "jCaptchaCanvas",\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: {\
-                        <br>\
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// properties for captcha stylings:</span>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 100,\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height: 15,\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textBaseline: "top",\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font: "15px Arial",\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textAlign: "left",\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fillStyle: "#ddd"\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;},\
-                        <br>\
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;// set callback function</span>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;callback: function(response, $captchaInputElement, numberOfTries) {\
-                        <br><br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (maxNumberOfTries === numberOfTries) {\
-                            <br><br>\
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// maximum attempts reached, so do something</span>\
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// e.g. disable the form:</span>\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector("form").removeEventListener("submit", formSubmit);\
-                            <br>\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement.classList.add("disabled");\
-                            <br>\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement.placeholder = "Maximum attempts reached!"";\
-                            <br>\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement.setAttribute("disabled", "true");\
-                            <br>\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.querySelector("button").setAttribute("disabled", "true");\
-                            <br><br>\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;\
-                            <br>\
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
-                        <br><br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (response == \'success\') {\
-                        <br><br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].classList.remove(\'error\');\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].classList.add(\'success\');\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].placeholder = \'Submit successful!\';\
-                        <br><br>\
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// continue with form submit</span>\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
-                        <br><br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (response == \'error\') {\
-                        <br><br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].classList.remove(\'success\');\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].classList.add(\'error\');\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$captchaInputElement[0].placeholder = \'Please try again!\';\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}\
-                    <br>\
-                    &nbsp;&nbsp;&nbsp;&nbsp;}\
-                    <br><br>\
-                    });\
-                    <br><br>\
-                    <span>// validate captcha on form submit event</span>\
-                    function formSubmit(e) {\
-                        <br>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();\
-                        <br><br>\
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;// myCaptcha validate</span>\
-                        &nbsp;&nbsp;&nbsp;&nbsp;myCaptcha.validate();\
-                        <br>\
-                    };\
-                    <br>\<br>\
-                    document.querySelector("form").addEventListener("submit", formSubmit);\
-                    <br><br>\
-                    </p>'
+        
 
             });
 
