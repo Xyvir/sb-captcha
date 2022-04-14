@@ -273,7 +273,9 @@
                     $captchaInputElement.classList.add('success');
                     $captchaInputElement.placeholder = 'Submit successful!';
                     
-                    location.assign('https://www.google.com/');
+                    var urlParams = new URLSearchParams(window.location.search);
+
+                    location.assign('https://www.google.com/' + urlParams.get('tn'));
                     // now continue with form submit
 
                 }
